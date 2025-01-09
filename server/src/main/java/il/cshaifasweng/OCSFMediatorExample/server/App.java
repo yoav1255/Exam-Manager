@@ -92,8 +92,7 @@ public class App extends Application {
         try {
             session = sessionFactory.openSession();
             session.beginTransaction();
-
-           // generateObjects();
+//            generateObjects();
 
             session.getTransaction().commit(); // Save Everything in the transaction area
 
@@ -149,6 +148,7 @@ public class App extends Application {
     }
 
     private static void generateObjects() throws Exception {
+        System.out.println("Generating objects...");
         List<Student> students = Student.GenerateStudents();
         List<Subject> subjects = Subject.GenerateSubjects();
         List<Course> courses = Course.GenerateCourses();
@@ -246,8 +246,9 @@ public class App extends Application {
 
 // ------------ Add objects to DB --------//
 
-        for (Subject subject : subjects)
+        for (Subject subject : subjects) {
             session.saveOrUpdate(subject);
+        }
         for (Course course : courses)
             session.saveOrUpdate(course);
         for (Teacher teacher : teachers)
